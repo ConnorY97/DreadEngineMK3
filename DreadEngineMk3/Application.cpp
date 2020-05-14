@@ -51,5 +51,10 @@ int Application::Create(int width, int height, const char* name)
 	auto minor = ogl_GetMinorVersion();
 
 	std::cout << "GL: " << major << "." << minor << std::endl;
+
+	std::cout << "Successfully created the window" << std::endl; 
+
+	glClearColor(0.25f, 0.25f, 0.25f, 1); 
+	glEnable(GL_DEPTH_TEST); 
 	return 0; 
 }
