@@ -61,5 +61,11 @@ int Application::Create(int width, int height, const char* name)
 
 void Application::Update()
 {
+	glfwSwapBuffers(m_window);
+	glfwPollEvents();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	m_now = glfwGetTime(); 
+	m_delaTime = (float)(m_now - m_last); 
+	m_last = m_now; 
 }
