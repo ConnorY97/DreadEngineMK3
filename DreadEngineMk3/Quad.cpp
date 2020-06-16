@@ -6,10 +6,10 @@ Quad::Quad(glm::vec2 pos, glm::vec3 col)
 	m_verticies =
 	{
 		//Position								//Colour
-		pos.x + 0.5f,	pos.y + 0.5f,	0.0f,	col.r, col.g, col.b,
-		pos.x + 0.5f,	pos.y + -0.5f,	0.0f,	col.r, col.g, col.b,
-		pos.x + -0.5f,	pos.y + -0.5f,	0.0f,	col.r, col.g, col.b,
-		pos.x + -0.5f,	pos.y + 0.5f,	0.0f,	col.r, col.g, col.b
+		pos.x + 0.1f,	pos.y + 0.1f,	0.0f,	col.r, col.g, col.b,
+		pos.x + 0.1f,	pos.y + -0.1f,	0.0f,	col.r, col.g, col.b,
+		pos.x + -0.1f,	pos.y + -0.1f,	0.0f,	col.r, col.g, col.b,
+		pos.x + -0.1f,	pos.y + 0.1f,	0.0f,	col.r, col.g, col.b
 	};
 
 	m_indicies =
