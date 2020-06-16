@@ -65,6 +65,10 @@ void Application::Update()
 	glfwPollEvents();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)	
+		glfwSetWindowShouldClose(m_window, true); 
+	
+
 	m_now = glfwGetTime(); 
 	m_delaTime = (float)(m_now - m_last); 
 	m_last = m_now; 

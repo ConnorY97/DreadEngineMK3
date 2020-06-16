@@ -158,11 +158,13 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="DreadEngineMk3.cpp" />
     <ClCompile Include="Primitives.cpp" />
+    <ClCompile Include="Quad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Dependencies\aieutilities\Gizmos.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Primitives.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
