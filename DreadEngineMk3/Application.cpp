@@ -56,5 +56,10 @@ int Application::Create(int width, int height, const char* name)
 
 	glClearColor(0.25f, 0.25f, 0.25f, 1); 
 	glEnable(GL_DEPTH_TEST); 
-	return 0; 
+	return 0;
+}
+
+void Application::Update()
+{
+
 }

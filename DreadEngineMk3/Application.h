@@ -9,7 +9,10 @@ class Application
 public:
 	Application(int width, int height, const char* name);
 
+
 	~Application(); 
+
+	void Update(); 
 
 	GLFWwindow* GetCurrentContext() { return m_window;  }
 
