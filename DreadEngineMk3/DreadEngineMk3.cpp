@@ -15,8 +15,8 @@ int main()
 
 	Application* m_dreadEngine = new Application(1280, 780, "DreadEngineMk3");
 	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader"); 
-	Quad* test = new Quad(glm::vec2(0.0, 0.0), glm::vec3(1, 0, 0)); 
-	Quad* test1 = new Quad(glm::vec2(0.0f, 0.0f), glm::vec3(0, 1, 0)); 
+	Quad* test = new Quad(glm::vec2(0.5f, 0.5f), glm::vec3(1, 0, 0)); 
+	Quad* test1 = new Quad(glm::vec2(-0.5f, -0.5f), glm::vec3(0, 1, 0)); 
 
 	
 
@@ -27,22 +27,8 @@ int main()
 	while (glfwWindowShouldClose(m_dreadEngine->GetCurrentContext()) == false)
 	{
 		m_dreadEngine->Update();
-		glm::mat4 transform = glm::mat4(1.0f); 
-		transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-		m_simpleShader->use();
-		unsigned int transformloc = glGetUniformLocation(m_simpleShader->ID, "transform"); 		
-		glUniformMatrix4fv(transformloc, 1, GL_FALSE, glm::value_ptr(transform)); 
-		test->Bind();
-		transform = glm::mat4(1.0f);
-		transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
-		transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-		//m_simpleShader->use();
-		transformloc = glGetUniformLocation(m_simpleShader->ID, "transform");
-		glUniformMatrix4fv(transformloc, 1, GL_FALSE, glm::value_ptr(transform));
-		test1->Bind();
-		//glBindVertexArray(VAO);
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); 
+		test->Draw(m_simpleShader);
+		test1->Draw(m_simpleShader);
 	}
 	
 	aie::Gizmos::destroy(); 
