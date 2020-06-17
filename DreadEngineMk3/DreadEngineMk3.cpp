@@ -14,14 +14,12 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	Application* m_dreadEngine = new Application(1280, 780, "DreadEngineMk3");
-	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader"); 
-	Quad* test = new Quad(glm::vec2(0.5f, 0.5f), glm::vec3(1, 0, 0)); 
-	Quad* test1 = new Quad(glm::vec2(-0.5f, -0.5f), glm::vec3(0, 1, 0)); 
+	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader");
+	Quad* test = new Quad(glm::vec2(0.5f, 0.5f), glm::vec3(1, 0, 0));
+	Quad* test1 = new Quad(glm::vec2(-0.5f, -0.5f), glm::vec3(0, 1, 0));	
 
-	
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	//Game loop
 	while (glfwWindowShouldClose(m_dreadEngine->GetCurrentContext()) == false)

@@ -64,9 +64,16 @@ Quad::~Quad()
 
 void Quad::Draw(Shader* shader)
 {
-	shader->use(); 
+	shader->use();
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	unsigned int transformLoc = glGetUniformLocation(shader->ID, "transform"); 
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(m_transform));	
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(m_transform));
+}
+
+void Quad::Position(glm::vec2 pos)
+{
+	m_pos = glm::vec4(pos, 0.0, 1.0);
+	m_transform = glm::mat4(1.0f);
+	m_transform[3] = m_pos;
 }
