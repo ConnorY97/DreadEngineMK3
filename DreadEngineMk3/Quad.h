@@ -2,17 +2,19 @@
 #include "glm.hpp"
 #include <vector>
 #include "Shader.h"
+#include "Texture.h"
+
 class Quad
 {
 public:
 	Quad(glm::vec2 pos, glm::vec3 col);
 	~Quad();
 
-	void Draw(Shader* shader);
+	void Draw(Shader* shader, Texture* texture);
 
-	void Position(glm::vec2 pos); 
+	void Position(glm::vec2 pos);
 
-	unsigned int GetVAO() { return VAO; }
+
 protected:
 	std::vector<float> m_vertices; 
 

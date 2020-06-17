@@ -27,7 +27,7 @@ int main()
 
 	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
-		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(1, 0, 0));
+		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(0, 0, 0));
 		m_quads.push_back(temp);
 	}
 
@@ -40,7 +40,7 @@ int main()
 		m_dreadEngine->Update();
 		for (size_t i = 0; i < QUADAMOUNT; i++)
 		{
-			m_quads[i]->Draw(m_simpleShader); 
+			m_quads[i]->Draw(m_simpleShader, m_squareSprite);
 		}
 	}
 	

@@ -6,11 +6,11 @@ Quad::Quad(glm::vec2 pos, glm::vec3 col)
 {
 	m_vertices =
 	{
-		//Position				//Colour
-		0.1f,	0.1f,	0.0f,	col.r, col.g, col.b,
-		0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,
-		-0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,
-		-0.1f,	0.1f,	0.0f,	col.r, col.g, col.b
+		//Position				//Colour				//TexCoords
+		0.1f,	0.1f,	0.0f,	col.r, col.g, col.b,	1.0f, 1.0f,	//top right		0
+		0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,	1.0f, 0.0f,	//bottom right	1
+		-0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,	0.0f, 0.0f, //bottom left	2
+		-0.1f,	0.1f,	0.0f,	col.r, col.g, col.b,	0.0f, 1.0f	//top left		3
 	};
 	
 	m_indices =
@@ -31,18 +31,23 @@ Quad::Quad(glm::vec2 pos, glm::vec3 col)
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 24, m_vertices.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 32, m_vertices.data(), GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * 6, m_indices.data(), GL_STATIC_DRAW);
 
 	//Position attribute 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	//Colour attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+
+	//TexCoords
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float))); 
+	glEnableVertexAttribArray(2);
+
 
 	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -62,8 +67,9 @@ Quad::~Quad()
 	glBindVertexArray(0);
 }
 
-void Quad::Draw(Shader* shader)
+void Quad::Draw(Shader* shader, Texture* texture)
 {
+	glBindTexture(GL_TEXTURE_2D, texture->texture); 
 	shader->use();
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
