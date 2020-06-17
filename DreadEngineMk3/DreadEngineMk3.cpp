@@ -15,29 +15,38 @@ int main()
 
 	Application* m_dreadEngine = new Application(1280, 780, "DreadEngineMk3");
 	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader");
-	Quad* test = new Quad(glm::vec2(0.5f, 0.5f), glm::vec3(1, 0, 0));
-	Quad* test1 = new Quad(glm::vec2(-0.5f, -0.5f), glm::vec3(0, 1, 0));	
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	std::vector<Quad*> m_quads; 
+
+	for (size_t i = 0; i < 5; i++)
+	{
+		Quad* temp = new Quad(glm::vec2(i * 0.25f, 0.0f), glm::vec3(1, 0, 0));
+		m_quads.push_back(temp); 
+	}
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	//Game loop
 	while (glfwWindowShouldClose(m_dreadEngine->GetCurrentContext()) == false)
 	{
 		m_dreadEngine->Update();
-		test->Draw(m_simpleShader);
-		test1->Draw(m_simpleShader);
+		for (size_t i = 0; i < 5; i++)
+		{
+			m_quads[i]->Draw(m_simpleShader); 
+		}
 	}
 	
+	for (size_t i = 0; i < 5; i++)
+	{
+		delete m_quads[i];
+		m_quads[i] = nullptr;
+	}
 	aie::Gizmos::destroy(); 
 
 	delete m_dreadEngine;
 	m_dreadEngine = nullptr;
 	delete m_simpleShader;
 	m_simpleShader = nullptr; 
-	delete test;
-	test = nullptr;
-	delete test1; 
-	test1 = nullptr;
 	return 0;
 }

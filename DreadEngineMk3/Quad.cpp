@@ -6,7 +6,7 @@ Quad::Quad(glm::vec2 pos, glm::vec3 col)
 {
 	m_vertices =
 	{
-		//Position								//Colour
+		//Position				//Colour
 		0.1f,	0.1f,	0.0f,	col.r, col.g, col.b,
 		0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,
 		-0.1f,	-0.1f,	0.0f,	col.r, col.g, col.b,
@@ -19,8 +19,8 @@ Quad::Quad(glm::vec2 pos, glm::vec3 col)
 		1, 2, 3
 	};
 
-	m_pos = glm::vec4(pos, 0.0, 1.0); 
-	m_transform = glm::mat4(1.0f); 
+	m_pos = glm::vec4(pos, 0.0, 1.0);
+	m_transform = glm::mat4(1.0f);
 	m_transform[3] = m_pos; 
 	 
 
