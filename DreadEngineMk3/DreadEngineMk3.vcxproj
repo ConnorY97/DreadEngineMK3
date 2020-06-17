@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\aieutilities;$(SolutionDir)Dependencies\glcore;$(SolutionDir)Dependencies\glm;$(SolutionDir)Dependencies\glfw\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\stb;$(SolutionDir)Dependencies\aieutilities;$(SolutionDir)Dependencies\glcore;$(SolutionDir)Dependencies\glm;$(SolutionDir)Dependencies\glfw\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,12 +158,15 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="DreadEngineMk3.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Dependencies\aieutilities\Gizmos.h" />
+    <ClInclude Include="..\Dependencies\stb\stb_image.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shaders\frag_shader.shader" />

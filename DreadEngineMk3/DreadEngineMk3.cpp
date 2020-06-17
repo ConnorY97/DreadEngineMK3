@@ -7,22 +7,28 @@
 #include "Shader.h"
 #include "Quad.h"
 #include <vector>
+#include "Texture.h"
+
 
 #define QUADAMOUNT 5
+
+#define SCREENWIDTH 600
+#define SCREENHEIGHT 1000
 
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	Application* m_dreadEngine = new Application(1280, 780, "DreadEngineMk3");
+	Application* m_dreadEngine = new Application(SCREENWIDTH, SCREENHEIGHT, "DreadEngineMk3");
 	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader");
+	Texture* m_squareSprite = new Texture("../Images/Square.png");
 
-	std::vector<Quad*> m_quads; 
+	std::vector<Quad*> m_quads;
 
 	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
-		Quad* temp = new Quad(glm::vec2(i * 0.25f, 0.0f), glm::vec3(1, 0, 0));
-		m_quads.push_back(temp); 
+		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(1, 0, 0));
+		m_quads.push_back(temp);
 	}
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -44,8 +50,9 @@ int main()
 		m_quads[i] = nullptr;
 	}
 
-	aie::Gizmos::destroy(); 
 
+	delete m_squareSprite;
+	m_squareSprite = nullptr; 
 	delete m_dreadEngine;
 	m_dreadEngine = nullptr;
 	delete m_simpleShader;
