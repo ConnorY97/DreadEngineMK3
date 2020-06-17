@@ -8,6 +8,7 @@
 #include "Quad.h"
 #include <vector>
 
+#define QUADAMOUNT 5
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
 
 	std::vector<Quad*> m_quads; 
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
 		Quad* temp = new Quad(glm::vec2(i * 0.25f, 0.0f), glm::vec3(1, 0, 0));
 		m_quads.push_back(temp); 
@@ -31,17 +32,18 @@ int main()
 	while (glfwWindowShouldClose(m_dreadEngine->GetCurrentContext()) == false)
 	{
 		m_dreadEngine->Update();
-		for (size_t i = 0; i < 5; i++)
+		for (size_t i = 0; i < QUADAMOUNT; i++)
 		{
 			m_quads[i]->Draw(m_simpleShader); 
 		}
 	}
 	
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
 		delete m_quads[i];
 		m_quads[i] = nullptr;
 	}
+
 	aie::Gizmos::destroy(); 
 
 	delete m_dreadEngine;
