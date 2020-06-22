@@ -22,13 +22,23 @@ int main()
 	Application* m_dreadEngine = new Application(SCREENWIDTH, SCREENHEIGHT, "DreadEngineMk3");
 	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader");
 	Texture* m_squareSprite = new Texture("../Images/Square.png");
+	Texture* m_ballSprite = new Texture("../Images/Ball.png");
 
-	std::vector<Quad*> m_quads;
+	std::vector<Quad*> m_squares;
+	std::vector<Quad*> m_ballz; 
+
+
 
 	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
 		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(0, 0, 0));
-		m_quads.push_back(temp);
+		m_squares.push_back(temp);
+	}
+
+	for (size_t i = 0; i < QUADAMOUNT; i++)
+	{
+		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.0f), glm::vec3(0, 0, 0)); 
+		m_ballz.push_back(temp); 
 	}
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -40,19 +50,31 @@ int main()
 		m_dreadEngine->Update();
 		for (size_t i = 0; i < QUADAMOUNT; i++)
 		{
-			m_quads[i]->Draw(m_simpleShader, m_squareSprite);
+			m_squares[i]->Draw(m_simpleShader, m_squareSprite);
+		}
+
+		for (size_t i = 0; i < QUADAMOUNT; i++)
+		{
+			m_ballz[i]->Draw(m_simpleShader, m_ballSprite);
 		}
 	}
 	
 	for (size_t i = 0; i < QUADAMOUNT; i++)
 	{
-		delete m_quads[i];
-		m_quads[i] = nullptr;
+		delete m_squares[i];
+		m_squares[i] = nullptr;
 	}
 
+	for (size_t i = 0; i < QUADAMOUNT; i++)
+	{
+		delete m_ballz[i];
+		m_ballz[i] = nullptr;
+	}
 
 	delete m_squareSprite;
-	m_squareSprite = nullptr; 
+	m_squareSprite = nullptr;
+	delete m_ballSprite;
+	m_ballSprite = nullptr;
 	delete m_dreadEngine;
 	m_dreadEngine = nullptr;
 	delete m_simpleShader;
