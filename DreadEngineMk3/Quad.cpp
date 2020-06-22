@@ -69,12 +69,12 @@ Quad::~Quad()
 
 void Quad::Draw(Shader* shader, Texture* texture)
 {
+	//shader->use();
 	glBindTexture(GL_TEXTURE_2D, texture->texture); 
-	shader->use();
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	unsigned int transformLoc = glGetUniformLocation(shader->ID, "transform"); 
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(m_transform));
+	glBindVertexArray(VAO);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void Quad::Position(glm::vec2 pos)

@@ -12,8 +12,8 @@
 
 #define QUADAMOUNT 5
 
-#define SCREENWIDTH 600
-#define SCREENHEIGHT 1000
+#define SCREENWIDTH 512
+#define SCREENHEIGHT 640
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
 	Application* m_dreadEngine = new Application(SCREENWIDTH, SCREENHEIGHT, "DreadEngineMk3");
 	Shader* m_simpleShader = new Shader("../Shaders/vert_shader.shader", "../Shaders/frag_shader.shader");
 	Texture* m_squareSprite = new Texture("../Images/Square.png");
-	Texture* m_ballSprite = new Texture("../Images/Ball.png");
+	Texture* m_ballSprite = new Texture("../Images/circle.png");
 
 	std::vector<Quad*> m_squares;
 	std::vector<Quad*> m_ballz; 
@@ -47,7 +47,8 @@ int main()
 	//Game loop
 	while (glfwWindowShouldClose(m_dreadEngine->GetCurrentContext()) == false)
 	{
-		m_dreadEngine->Update();
+		m_dreadEngine->Update(); 
+		m_simpleShader->use(); 
 		for (size_t i = 0; i < QUADAMOUNT; i++)
 		{
 			m_squares[i]->Draw(m_simpleShader, m_squareSprite);
