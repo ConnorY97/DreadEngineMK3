@@ -15,6 +15,8 @@
 #define SCREENWIDTH 512
 #define SCREENHEIGHT 640
 
+void CreateBall(std::vector<Quad*>& list);
+
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -29,15 +31,15 @@ int main()
 
 
 
-	for (size_t i = 0; i < QUADAMOUNT; i++)
+	for (size_t i = 0; i < 1; i++)
 	{
-		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(0, 0, 0));
+		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.60f), glm::vec3(1, 0, 0));
 		m_squares.push_back(temp);
 	}
 
-	for (size_t i = 0; i < QUADAMOUNT; i++)
+	for (size_t i = 0; i < 1; i++)
 	{
-		Quad* temp = new Quad(glm::vec2(-0.5f + i * 0.25f, 0.0f), glm::vec3(0, 0, 0)); 
+		Quad* temp = new Quad(glm::vec2(0.0f, -1.0f), glm::vec3(1, 1, 1));
 		m_ballz.push_back(temp); 
 	}
 
@@ -49,24 +51,29 @@ int main()
 	{
 		m_dreadEngine->Update(); 
 		m_simpleShader->use(); 
-		for (size_t i = 0; i < QUADAMOUNT; i++)
+		for (size_t i = 0; i < m_squares.size(); i++)
 		{
 			m_squares[i]->Draw(m_simpleShader, m_squareSprite);
 		}
 
-		for (size_t i = 0; i < QUADAMOUNT; i++)
+		for (size_t i = 0; i < m_ballz.size(); i++)
 		{
 			m_ballz[i]->Draw(m_simpleShader, m_ballSprite);
 		}
+
+		if (glfwGetKey(m_dreadEngine->GetCurrentContext(), GLFW_KEY_SPACE))
+		{
+			CreateBall(m_ballz);
+		}
 	}
 	
-	for (size_t i = 0; i < QUADAMOUNT; i++)
+	for (size_t i = 0; i < m_squares.size(); i++)
 	{
 		delete m_squares[i];
 		m_squares[i] = nullptr;
 	}
 
-	for (size_t i = 0; i < QUADAMOUNT; i++)
+	for (size_t i = 0; i < m_ballz.size(); i++)
 	{
 		delete m_ballz[i];
 		m_ballz[i] = nullptr;
@@ -81,4 +88,10 @@ int main()
 	delete m_simpleShader;
 	m_simpleShader = nullptr; 
 	return 0;
+}
+
+void CreateBall(std::vector<Quad*>& list)
+{
+	Quad* temp = new Quad(glm::vec2(0.0f, 0.0f), glm::vec3(0, 0, 0));
+	list.push_back(temp); 
 }
