@@ -33,7 +33,7 @@ int main()
 	{
 		m_dreadEngine->Update(); 
 		m_simpleShader->use(); 
-		m_universe->Update(m_dreadEngine->GetCurrentContext()); 
+		m_universe->Update(m_dreadEngine->GetCurrentContext(), m_simpleShader); 
 	}
 	
 
