@@ -41,8 +41,8 @@ int main()
 	m_dreadEngine = nullptr;
 	delete m_simpleShader;
 	m_simpleShader = nullptr; 
-	m_universe = nullptr; 
 	delete m_universe; 
+	m_universe = nullptr; 
 	return 0;
 }
 

@@ -72,6 +72,7 @@ void Application::Update()
 	
 
 	m_now = glfwGetTime(); 
-	m_delaTime = (float)(m_now - m_last); 
+	m_deltaTime = (float)(m_now - m_last); 
 	m_last = m_now; 
 }
+

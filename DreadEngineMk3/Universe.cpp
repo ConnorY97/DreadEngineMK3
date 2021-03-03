@@ -5,11 +5,13 @@
 
 Universe::Universe()
 {
-
+	m_sun = new UniversalBody(glm::vec2(0, 0), glm::vec3(1, 1, 0)); 
 }
 
 Universe::~Universe()
 {
+	delete m_sun;
+	m_sun = nullptr; 
 }
 
 void Universe::Update(GLFWwindow* currentApp)

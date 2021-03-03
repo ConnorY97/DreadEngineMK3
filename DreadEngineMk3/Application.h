@@ -24,7 +24,7 @@ protected:
 	//Delta time 
 	double m_last = 0.0; 
 	double m_now = 0.0; 
-	float m_delaTime = 1.0f; 
+	float m_deltaTime = 1.0f; 
 
 };
 
