@@ -160,6 +160,8 @@
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UniversalBody.cpp" />
+    <ClCompile Include="Universe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Dependencies\aieutilities\Gizmos.h" />
@@ -169,6 +171,8 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UniversalBody.h" />
+    <ClInclude Include="Universe.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shaders\frag_shader.shader" />
